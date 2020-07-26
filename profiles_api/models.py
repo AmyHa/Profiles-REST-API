@@ -30,6 +30,13 @@ class UserProfileManager(BaseUserManager):
 
         return user
 
+    def change_password(self, email, password):
+        """Change password of user"""
+        user = User.objects.get(email = email)
+        user.set_password(password)
+        user.save()
+
+
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Database model for users in the system"""
 
